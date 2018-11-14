@@ -1,4 +1,4 @@
-# php-simple-assets (english,russian doc)
+# php-simple-assets
 publish assets (js, css etc) from vendor, support dependencies
 (inspired by yii2 assets)
 

@@ -57,9 +57,9 @@ class BaseAsset extends SimpleAsset
 }
 ```
 
-Также можно указать, пакет с зависимостью от другого ассета, для этого заполните свойство-массив 
+Также можно указать ассет с зависимостью от другого ассета, для этого заполните свойство-массив 
 `$needs` полными именами классов ассетов, от которых зависит данный
-(You can define depenedcies by settings `$needs` array property):
+(You can also define dependencies from other packages by setting `$needs` array property):
 ```php
 use ItForFree\SimpleAsset\SimpleAsset;
 use application\models\BaseAsset;

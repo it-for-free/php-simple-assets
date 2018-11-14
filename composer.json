@@ -1,5 +1,5 @@
 {
-    "name": "it-for-free/php-simple-asset",
+    "name": "it-for-free/php-simple-assets",
     "type": "library",
     "description": "copy assets (js, css etc) from vendor, support dependencies",
     

@@ -59,7 +59,7 @@ class BaseAsset extends SimpleAsset
 
 Также можно указать, пакет с зависимостью от другого ассета, для этого заполните свойство-массив 
 `$needs` полными именами классов ассетов, от которых зависит данный
-(you can define depenedcies by settings `$needs` array property):
+(You can define depenedcies by settings `$needs` array property):
 ```php
 use ItForFree\SimpleAsset\SimpleAsset;
 use application\models\BaseAsset;
@@ -85,7 +85,7 @@ class TestAsset extends SimpleAsset
 }
 ```
 
-Далее в любом месте кода, например в представлении  зарегистрируем ассет (then in any place in your code register any asset you 
+Далее в любом месте кода, например в представлении  зарегистрируем ассет (Then in any place in your code register any asset you 
 need on page by call `::add()`):
 
 ```html
@@ -107,5 +107,19 @@ TestAsset::add();
 </div>
 
 ```
+ Это даст нам (We will get):
+
+```html
+Js:
+<pre><script type="text/javascript" src="/assets/88bdd3ea85/1542210511/js/basejs.js"></script>
+<script type="text/javascript" src="/assets/0a23d877c3/1542203580/js/test1.js"></script>
+<script type="text/javascript" src="/assets/0a23d877c3/1542203580/js/test2222.js"></script>
+</pre>
+Css:
+<pre><link rel="stylesheet" type="text/css" href="/assets/88bdd3ea85/1542210511/css/basecss.css">
+<link rel="stylesheet" type="text/css" href="/assets/0a23d877c3/1542203580/css/my.css">
+</pre>
+```
+
 -- Как видно, `SimpleAssetManager` может выводить все зарегистрированные JS и CSS в нужном порядке.
-(as you can see `SimpleAssetManager` can print JS or Css like HTML resource tags)
+(As you can see `SimpleAssetManager` can print JS or Css like HTML resource tags)

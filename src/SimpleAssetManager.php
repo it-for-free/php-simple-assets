@@ -5,7 +5,9 @@ namespace ItForFree\SimpleAsset;
 use ItForFree\rusphp\File\Path;
 
 /**
+ * Менеджер ассетов (в т.ч. управляет зависимостями)
  * Используется, в частности для непостредственого отображения CSS и JS
+ * @see https://github.com/it-for-free/php-simple-assets
  */
 class SimpleAssetManager
 {

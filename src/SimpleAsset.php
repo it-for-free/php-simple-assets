@@ -8,7 +8,9 @@ use ItForFree\rusphp\PHP\Hash\LengthHash;
 use ItForFree\rusphp\File\Directory\Directory;
 
 /**
- * Базовый класс
+ * Базовый класс дял описания вашего ассета -- от него нужно отнаследоваться
+ * чтобы определить свой ассет
+ * @see https://github.com/it-for-free/php-simple-assets
  */
 class SimpleAsset
 {

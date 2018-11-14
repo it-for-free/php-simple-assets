@@ -1,8 +1,8 @@
 <?php
 
-namespace ItForFree\SimpleMVC\components\SimpleAsset;
+namespace ItForFree\SimpleAsset;
 
-use ItForFree\SimpleMVC\components\SimpleAsset\SimpleAssetManager;
+use ItForFree\SimpleAsset\SimpleAssetManager;
 use ItForFree\rusphp\File\Path;
 use ItForFree\rusphp\PHP\Hash\LengthHash;
 use ItForFree\rusphp\File\Directory\Directory;

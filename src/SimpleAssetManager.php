@@ -1,6 +1,6 @@
 <?php
 
-namespace ItForFree\SimpleMVC\components\SimpleAsset;
+namespace ItForFree\SimpleAsset;
 
 use ItForFree\rusphp\File\Path;
 
@@ -92,7 +92,7 @@ class SimpleAssetManager
      */
     public static function getJsHtml()
     {
-        
+//        pdie(static::$assets);
         $html = '';
         foreach (static::$assets as $Asset) {
             foreach ($Asset->publishedPaths['js'] as $filePath) {

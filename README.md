@@ -123,3 +123,9 @@ Css:
 
 -- Как видно, `SimpleAssetManager` может выводить все зарегистрированные JS и CSS в нужном порядке.
 (As you can see `SimpleAssetManager` can print JS or Css like HTML resource tags)
+
+
+## Связанные пакеты (Other related packages)
+
+Смотрите компоненты SimpleMVC (Look at SimpleMVC components): 
+https://github.com/it-for-free/SimpleMVC#%D0%BF%D0%BE%D0%BB%D0%B5%D0%B7%D0%BD%D1%8B%D0%B5-%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D1%8B

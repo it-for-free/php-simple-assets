@@ -4,7 +4,8 @@
     "description": "copy assets (js, css etc) from vendor, support dependencies",
     
     "keywords": ["php", "assets", "vendor", "copy", "clone", "assets manager",
-        "copy assets (js, css etc) from vendor, support dependencies"
+        "copy assets js css etc from vendor support dependencies",
+        "like in yii yii2"
     ],
     
     "homepage": "http://fkn.ktu10.com/?q=node/10559",

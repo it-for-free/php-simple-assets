@@ -123,7 +123,9 @@ class SimpleAssetManager
     
     public static function getPublishBasePath()
     {
-        return Path::addToDocumentRoot(static::$assetsPath);
+        return Path::addEndSlash(
+            Path::addToDocumentRoot(static::$assetsPath)
+        );
     }
     
     /**

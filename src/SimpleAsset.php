@@ -99,7 +99,9 @@ class SimpleAsset
         $assetSourcePath = $this->basePath;
         
         $pubFolderPath = $basePublishPath . 'js/' ;
-        Directory::createRecIfNotExists($pubFolderPath, 0777);
+        if (!empty($this->js)) {
+            Directory::createRecIfNotExists($pubFolderPath, 0777);        
+        }
         foreach ($this->js as $filePath) {         
             $fullPubPath = $pubFolderPath . Path::getFileName($filePath);
             $fullSourcePath = $assetSourcePath . DIRECTORY_SEPARATOR . $filePath;
@@ -108,7 +110,9 @@ class SimpleAsset
         }
 
         $pubFolderPath = $basePublishPath . 'css/' ;
-        Directory::createRecIfNotExists($pubFolderPath, 0777);        
+        if (!empty($this->css)) {
+            Directory::createRecIfNotExists($pubFolderPath, 0777);        
+        }
         foreach ($this->css as $filePath) {
             $fullPubPath = $pubFolderPath . Path::getFileName($filePath);
             $fullSourcePath = $assetSourcePath . DIRECTORY_SEPARATOR . $filePath;

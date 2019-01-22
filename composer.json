@@ -1,11 +1,12 @@
 {
     "name": "it-for-free/php-simple-assets",
     "type": "library",
-    "description": "copy assets (js, css etc) from vendor, support dependencies",
+    "description": "simple php asset management: copy assets (js, css etc) from vendor, support dependencies",
     
     "keywords": ["php", "assets", "vendor", "copy", "clone", "assets manager",
         "copy assets js css etc from vendor support dependencies",
-        "like in yii yii2"
+        "like in yii yii2",
+        "simple php asset management"
     ],
     
     "homepage": "http://fkn.ktu10.com/?q=node/10559",

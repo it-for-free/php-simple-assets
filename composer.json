@@ -6,7 +6,8 @@
     "keywords": ["php", "assets", "vendor", "copy", "clone", "assets manager",
         "copy assets js css etc from vendor support dependencies",
         "like in yii yii2",
-        "simple php asset management"
+        "simple php asset management",
+        "source map"
     ],
     
     "homepage": "http://fkn.ktu10.com/?q=node/10559",

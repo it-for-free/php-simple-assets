@@ -126,8 +126,9 @@ Css:
 
 ### javascript source maps 
 
-Вы можете добавлять source map в массив js.
-(You can add source map in `public $js ` array for publishing.)
+Вы можете добавлять пути к файлам `source map`  (они должны заканчиваться на `.map`) в свойство `public $js` вашего класса-ассета.
+
+(You can add paths to `source map` files (they should end with `.map`) in your asset class `public $js` array property.)
 
 ## Связанные пакеты (Other related packages)
 
@@ -138,7 +139,7 @@ https://github.com/it-for-free/SimpleMVC#%D0%BF%D0%BE%D0%BB%D0%B5%D0%B7%D0%BD%D1
 
 ## ToDo
 
-* Если некий js уже лежал в папке ассета (vendor) до публикации, 
+* Если некий js-файл уже лежал в папке ассета (vendor) до публикации, 
 потом не был опубликован с другими файлами этого ассета,
  а заетм был добавлен, перепубликации не произойдёт -- необходимо добавить проверку того, если хоть какая-нибудь версия очередного файла в папке публикации,
 и публиковать полностью заново если версии файла нет (просто проверки времени последнего изменения, как это работает сейчас. не достаточно).

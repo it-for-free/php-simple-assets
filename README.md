@@ -124,6 +124,10 @@ Css:
 -- Как видно, `SimpleAssetManager` может выводить все зарегистрированные JS и CSS в нужном порядке.
 (As you can see `SimpleAssetManager` can print JS or Css like HTML resource tags)
 
+### javascript source maps 
+
+Вы можете добавлять source map в массив js.
+(You can add source map in `public $js ` array for publishing.)
 
 ## Связанные пакеты (Other related packages)
 

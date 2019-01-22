@@ -3,6 +3,7 @@
 namespace ItForFree\SimpleAsset;
 
 use ItForFree\rusphp\File\Path;
+use ItForFree\rusphp\PHP\Str\StrCommon;
 
 /**
  * Менеджер ассетов (в т.ч. управляет зависимостями)
@@ -98,11 +99,18 @@ class SimpleAssetManager
         $html = '';
         foreach (static::$assets as $Asset) {
             foreach ($Asset->publishedPaths['js'] as $filePath) {
-                $html .= "<script type=\"text/javascript\" src=\""
+                if (!static::isSourceMapFile($filePath)) {
+                    $html .= "<script type=\"text/javascript\" src=\""
                         . Path::getWithoutDocumentRoot($filePath, true) ."\"></script>\n";
+                }
             }
         }
         return $html;
+    }
+    
+    protected function isSourceMapFile($path)
+    {
+        return StrCommon::isEndWith($path, '.map');
     }
     
     /**

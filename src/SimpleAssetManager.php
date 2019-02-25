@@ -108,7 +108,7 @@ class SimpleAssetManager
         return $html;
     }
     
-    protected function isSourceMapFile($path)
+    protected static function isSourceMapFile($path)
     {
         return StrCommon::isEndWith($path, '.map');
     }

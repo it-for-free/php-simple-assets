@@ -2,35 +2,38 @@
     "name": "it-for-free/php-simple-assets",
     "type": "library",
     "description": "simple php asset management: copy assets (js, css etc) from vendor, support dependencies",
-    
-    "keywords": ["php", "assets", "vendor", "copy", "clone", "assets manager",
+    "keywords": [
+        "php",
+        "assets",
+        "vendor",
+        "copy",
+        "clone",
+        "assets manager",
         "copy assets js css etc from vendor support dependencies",
         "like in yii yii2",
         "simple php asset management",
         "source map"
     ],
-    
     "homepage": "http://fkn.ktu10.com/?q=node/10559",
     "license": "MIT",
-    
     "require": {
         "php": ">=5.3.0",
         "it-for-free/rusphp": "v2.*"
     },
-
     "autoload": {
         "psr-4": {
             "ItForFree\\SimpleAsset\\": "src"
-        }    
+        }
     },
-    
     "repositories": [
         {
-           "type": "vcs",
-           "url": "https://github.com/it-for-free/rusphp"
+            "type": "vcs",
+            "url": "https://github.com/it-for-free/rusphp"
         }
     ],
     "require-dev": {
-        "codeception/codeception": "^4.1"
+        "codeception/codeception": "^4.1",
+        "codeception/module-phpbrowser": "^1.0.0",
+        "codeception/module-asserts": "^1.0.0"
     }
 }

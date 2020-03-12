@@ -68,15 +68,13 @@ class SimpleAsset
    public function publish()
    {
        $baseAssetPublishPath = SimpleAssetManager::getPublishBasePath() . LengthHash::md5(static::class, 10);
-//       pdie($baseAssetPublishPath);
-       
+
 
        Directory::createRecIfNotExists($baseAssetPublishPath, 0777);
        
        $lastChangeFileTimestamp = $this->getLastChangeFileTimestamp();
        
-//       pdie($lastChangeFileTimestamp); 
-       $baseAssetTimePath = $baseAssetPublishPath 
+       $baseAssetTimePath = $baseAssetPublishPath
             . DIRECTORY_SEPARATOR . $lastChangeFileTimestamp;
        
           
@@ -164,12 +162,13 @@ class SimpleAsset
         $assetSourcePath = $this->basePath;
         
         $lasttime = 0;
-
+        $jsFilesNames = '';
+        $cssFilesNames = '';
         foreach ($this->js as $filePath) {
             $fullPath = $assetSourcePath . DIRECTORY_SEPARATOR . $filePath;
-//            ppre($fullPath);
             $currentLastTime = filemtime($fullPath);
-            
+            $jsFilesNames .= $filePath;
+
             if ($lasttime < $currentLastTime) {
                 $lasttime = $currentLastTime;
             }
@@ -178,14 +177,15 @@ class SimpleAsset
         foreach ($this->css as $filePath) {
             $fullPath = $assetSourcePath . DIRECTORY_SEPARATOR . $filePath;
             $currentLastTime = filemtime($fullPath);
-            
+            $cssFilesNames .= $filePath;
+
             if ($lasttime < $currentLastTime) {
                 $lasttime = $currentLastTime;
             }
         }
-        
-//        pdie($lasttime);
-        
-        return $lasttime; 
+
+        $filesNamesHash = LengthHash::md5($jsFilesNames . $cssFilesNames, 6);
+
+        return $lasttime . $filesNamesHash;
    } 
 }

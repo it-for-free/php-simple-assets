@@ -29,5 +29,8 @@
            "type": "vcs",
            "url": "https://github.com/it-for-free/rusphp"
         }
-    ]
+    ],
+    "require-dev": {
+        "codeception/codeception": "^4.1"
+    }
 }

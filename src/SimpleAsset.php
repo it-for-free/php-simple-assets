@@ -52,8 +52,10 @@ class SimpleAsset
     */
    public static function add()
    {
-       $name = get_called_class();
-       $Asset = new $name;
+//       $name = get_called_class();
+//       $Asset = new $name;
+       $Asset = new static();
+//       vdie($Asset);
        $Asset->basePath = Path::addToDocumentRoot($Asset->basePath); // делаем относительный путь абсолютным
        if (!is_dir($Asset->basePath)) {
             throw new \Exception("Source asset dir {$Asset->basePath} not exists for " . get_class($Asset) ."! ");

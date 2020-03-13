@@ -17,7 +17,7 @@
     "homepage": "http://fkn.ktu10.com/?q=node/10559",
     "license": "MIT",
     "require": {
-        "php": ">=5.3.0",
+        "php": ">=5.5",
         "it-for-free/rusphp": "v2.*"
     },
     "autoload": {

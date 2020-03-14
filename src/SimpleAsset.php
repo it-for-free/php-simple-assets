@@ -49,34 +49,27 @@ class SimpleAsset
      * Добавляет ресурсы (информацию о них) данного пакета к глобальному списку, который
      * далее можно будет распечатать в шаблоне с помощью
      * класса SimpleAssetManager
-     * @param string $rootPath
      * @throws \Exception
      */
-    public function add($rootPath = '', $targetPath = '')
+    public function add()
     {
-//       $name = get_called_class();
-//       $Asset = new $name;
         $Asset = new static();
-//       vdie($Asset);
-        if ($rootPath) {
-            $Asset->basePath = $rootPath;
-        } else {
+
             $Asset->basePath = Path::addToDocumentRoot($Asset->basePath); // делаем относительный путь абсолютным
-        }
-//       $isPath = is_dir($Asset->basePath);
+
         if (!is_dir($Asset->basePath)) {
             throw new \Exception("Source asset dir {$Asset->basePath} not exists for " . get_class($Asset) . "! ");
         }
-        SimpleAssetManager::addAsset($Asset, $targetPath);
+        SimpleAssetManager::addAsset($Asset);
     }
 
     /**
      * Основной метод для публикации ресурсов ассета
      * @return null
      */
-    public function publish($targetPath)
+    public function publish()
     {
-        $baseAssetPublishPath = SimpleAssetManager::getPublishBasePath($targetPath) . LengthHash::md5(static::class, 10);
+        $baseAssetPublishPath = SimpleAssetManager::getPublishBasePath() . LengthHash::md5(static::class, 10);
 
 
         Directory::createRecIfNotExists($baseAssetPublishPath, 0777);

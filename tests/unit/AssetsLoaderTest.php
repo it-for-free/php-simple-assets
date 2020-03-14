@@ -32,6 +32,9 @@ class AssetsLoaderTest extends Unit
 
     public function testAss()
     {
+        $this->make(ItForFree\SimpleAsset\SimpleAssetManager::class, [
+            'assetsPath' => $this->targetPath
+        ]);
         $asset = $this->make(ItForFree\SimpleAsset\SimpleAsset::class, [
             'basePath' => $this->basePath,
             'js' => [
@@ -43,7 +46,7 @@ class AssetsLoaderTest extends Unit
 
         ]);
 
-        $asset->publish($this->targetPath);
+        $asset->publish();
 
         $this->tester->seeFileFound('test1.js', $this->targetPath);
         $this->tester->seeFileFound('my.css', $this->targetPath);
@@ -59,7 +62,7 @@ class AssetsLoaderTest extends Unit
             ],
         ]);
 
-        $asset->publish($this->targetPath);
+        $asset->publish();
 
         $this->tester->seeFileFound('test1.js', $this->targetPath);
         $this->tester->seeFileFound('my.css', $this->targetPath);

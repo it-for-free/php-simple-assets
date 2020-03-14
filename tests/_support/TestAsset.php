@@ -16,7 +16,8 @@ use Test\BaseAsset;
 class TestAsset extends SimpleAsset
 {
     public $js = [
-        'myassets/test1.js'
+        'myassets/test1.js',
+//        'myassets/test2222.js'
     ];
     
     public $css = [

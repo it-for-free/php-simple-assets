@@ -1,8 +1,14 @@
-<?php 
-class AssetsLoaderTest extends \Codeception\Test\Unit
+<?php
+
+use Codeception\Test\Unit;
+use ItForFree\rusphp\PHP\Hash\LengthHash;
+use Test\NewTestAsset;
+use Test\TestAsset;
+
+class AssetsLoaderTest extends Unit
 {
     /**
-     * @var \UnitTester
+     * @var UnitTester
      */
     protected $tester;
     protected $basePath;
@@ -10,8 +16,9 @@ class AssetsLoaderTest extends \Codeception\Test\Unit
 
     protected function _before()
     {
+
         $this->basePath = codecept_data_dir();
-        $this->targetPath = codecept_output_dir() .'/assets/';
+        $this->targetPath = codecept_output_dir() .'assets/';
         if (!file_exists($this->targetPath)) {
             mkdir($this->targetPath);
         }
@@ -20,44 +27,86 @@ class AssetsLoaderTest extends \Codeception\Test\Unit
 
     protected function _after()
     {
-        \ItForFree\rusphp\File\Directory\Directory::clear($this->targetPath);
+        \ItForFree\rusphp\File\Directory\Directory::clear($this->targetPath, true);
     }
 
-    // tests
-/*    public function testSomeFeature()
+    public function testAss()
     {
-        $assetsPath = __DIR__.'/js_test/';
-        if (!file_exists($assetsPath)) {
-            mkdir($assetsPath);
-        }
-
-        $files = ['file2.js', 'file1.js'];
-
-        foreach ($files as $file) {
-            $newFile = fopen($assetsPath . $file, 'wb');
-            fwrite($newFile, $file);
-//            sleep(2);
-        }
         $asset = $this->make(ItForFree\SimpleAsset\SimpleAsset::class, [
-            'basePath' => $assetsPath,
-            'js' => [$files[1]],
-            'copyToAssetsDir' => Codeception\Stub\Expected::exactly(1)
+            'basePath' => $this->basePath,
+            'js' => [
+                'myassets/test1.js',
+            ],
+            'css' => [
+                'myassets/css/my.css'
+            ],
+
         ]);
 
-        $simpleAssetManager = $this->make(ItForFree\SimpleAsset\SimpleAssetManager::class, [
-            'assetsPath' => $assetsPath . '/assets',
+        $asset->publish($this->targetPath);
+
+        $this->tester->seeFileFound('test1.js', $this->targetPath);
+        $this->tester->seeFileFound('my.css', $this->targetPath);
+
+        $asset = $this->make(ItForFree\SimpleAsset\SimpleAsset::class, [
+            'basePath' => $this->basePath,
+            'js' => [
+                'myassets/test1.js',
+                'myassets/test2222.js'
+            ],
+            'css' => [
+                'myassets/css/my.css'
+            ],
         ]);
 
-        $asset->needs = [];
-        $asset->publish('');
+        $asset->publish($this->targetPath);
 
-    }*/
+        $this->tester->seeFileFound('test1.js', $this->targetPath);
+        $this->tester->seeFileFound('my.css', $this->targetPath);
+        $this->tester->seeFileFound('test2222.js', $this->targetPath);
 
+        $time1 = filemtime($this->basePath . $asset->js[0]);
+        $time2 = filemtime($this->basePath . $asset->js[1]);
+        $this->tester->assertGreaterOrEquals($time2, $time1, 'Файл 2 создан раньше файла 1');
+    }
+
+
+
+/*    public function testAssetsAddingNew()
+    {
+//        $classFile = codecept_root_dir() . 'tests/_support/TestAsset.php';
+//        $fileLines = file($classFile);
+//        $fileLines[19] = "//        'myassets/test2222.js'\n";
+//        file_put_contents($classFile, $fileLines);
+
+//        TestAsset::add($this->basePath, $this->targetPath);
+        $TestAsset = new ItForFree\SimpleAsset\SimpleAsset();
+        $TestAsset->js = [
+            'myassets/test1.js',
+//            'myassets/test2222.js'
+        ];
+        $this->tester->seeFileFound('test1.js', $this->targetPath);
+
+        $this->tester->seeFileFound('my.css', $this->targetPath);
+
+
+    }
     public function testAssetsAdding()
     {
-
-        \Test\TestAsset::add($this->basePath, $this->targetPath);
-        \Test\NewTestAsset::add($this->basePath, $this->targetPath);
-
-    }
+        $searchPath = $this->targetPath . LengthHash::md5(TestAsset::class, 10);
+        $TestAsset = new ItForFree\SimpleAsset\SimpleAsset();
+        $TestAsset->js = [
+            'myassets/test1.js',
+            'myassets/test2222.js'
+        ];
+//        vdie($TestAsset);
+        $TestAsset->add($this->basePath, $this->targetPath);
+        $this->tester->seeFileFound('test1.js', $this->targetPath);
+        $this->tester->seeFileFound('my.css', $this->targetPath);
+        $this->tester->seeFileFound('test2222.js', $this->targetPath);
+//        $classFile = codecept_root_dir() . 'tests/_support/TestAsset.php';
+//        $fileLines = file($classFile);
+//        $fileLines[19] = "        'myassets/test2222.js'\n";
+//        file_put_contents($classFile, $fileLines);
+    }*/
 }

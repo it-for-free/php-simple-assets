@@ -54,7 +54,6 @@ class SimpleAssetManager
             static::$assetsNames[] = get_class($SimpleAssetObject);
             static::$assets[get_class($SimpleAssetObject)] = $SimpleAssetObject; 
         }
-        
         $SimpleAssetObject->publish($targetPath);
     }
     
@@ -131,7 +130,6 @@ class SimpleAssetManager
 
     public static function getPublishBasePath($targetPath)
     {
-//        vdie(static::$assetsPath);
         if ($targetPath) {
             return $targetPath;
         }
@@ -147,8 +145,9 @@ class SimpleAssetManager
      */
     protected static function checkBasePublishingDirectoryExists($targetPath)
     {
+//        vdie($Asset->basePath);
         if (!is_dir(static::getPublishBasePath($targetPath))) {
-            throw new \Exception("Base asset dir  not exists! ");
+            throw new \Exception("Base asset dir {$Asset->basePath} not exists! ");
         }
     }
 }

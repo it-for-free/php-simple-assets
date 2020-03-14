@@ -44,9 +44,9 @@ class SimpleAssetManager
      * 
      * @param \ItForFree\SimpleMVC\components\SimpleAsset\SimpleAsset $SimpleAssetObject
      */
-    public static function addAsset($SimpleAssetObject)
+    public static function addAsset($SimpleAssetObject, $targetPath)
     {
-        static::checkBasePublishingDirectoryExists();
+        static::checkBasePublishingDirectoryExists($targetPath);
         static::addRequirements($SimpleAssetObject); 
         
         if (empty(static::$assetsNames) 
@@ -55,7 +55,7 @@ class SimpleAssetManager
             static::$assets[get_class($SimpleAssetObject)] = $SimpleAssetObject; 
         }
         
-        $SimpleAssetObject->publish();
+        $SimpleAssetObject->publish($targetPath);
     }
     
     /**
@@ -128,9 +128,13 @@ class SimpleAssetManager
         }
         return $html;
     }
-    
-    public static function getPublishBasePath()
+
+    public static function getPublishBasePath($targetPath)
     {
+//        vdie(static::$assetsPath);
+        if ($targetPath) {
+            return $targetPath;
+        }
         return Path::addEndSlash(
             Path::addToDocumentRoot(static::$assetsPath)
         );
@@ -141,10 +145,10 @@ class SimpleAssetManager
      * (ниже корневой папки) существует 
      * @throws \Exception
      */
-    protected static function checkBasePublishingDirectoryExists()
+    protected static function checkBasePublishingDirectoryExists($targetPath)
     {
-        if (!is_dir(static::getPublishBasePath())) {
-            throw new \Exception("Base asset dir {$Asset->basePath} not exists! ");
+        if (!is_dir(static::getPublishBasePath($targetPath))) {
+            throw new \Exception("Base asset dir  not exists! ");
         }
     }
 }

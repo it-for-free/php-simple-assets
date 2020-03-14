@@ -44,32 +44,39 @@ class SimpleAsset
        'js' => array(),
        'css' => array(),
    );
-   
-   /**
-    * Добавляет ресурсы (информацию о них) данного пакета к глобальному списку, который 
-    * далее можно будет распечатать в шаблоне с помощью
-    * класса SimpleAssetManager
-    */
-   public static function add()
+
+    /**
+     * Добавляет ресурсы (информацию о них) данного пакета к глобальному списку, который
+     * далее можно будет распечатать в шаблоне с помощью
+     * класса SimpleAssetManager
+     * @param string $rootPath
+     * @throws \Exception
+     */
+   public static function add($rootPath = '', $targetPath = '')
    {
 //       $name = get_called_class();
 //       $Asset = new $name;
        $Asset = new static();
 //       vdie($Asset);
-       $Asset->basePath = Path::addToDocumentRoot($Asset->basePath); // делаем относительный путь абсолютным
+       if ($rootPath) {
+           $Asset->basePath = $rootPath;
+       } else {
+           $Asset->basePath = Path::addToDocumentRoot($Asset->basePath); // делаем относительный путь абсолютным
+       }
+//       $isPath = is_dir($Asset->basePath);
        if (!is_dir($Asset->basePath)) {
             throw new \Exception("Source asset dir {$Asset->basePath} not exists for " . get_class($Asset) ."! ");
        }
-       SimpleAssetManager::addAsset($Asset);
+       SimpleAssetManager::addAsset($Asset, $targetPath);
    }
 
    /**
     * Основной метод для публикации ресурсов ассета
     * @return null
     */
-   public function publish()
+   public function publish($targetPath)
    {
-       $baseAssetPublishPath = SimpleAssetManager::getPublishBasePath() . LengthHash::md5(static::class, 10);
+       $baseAssetPublishPath = SimpleAssetManager::getPublishBasePath($targetPath) . LengthHash::md5(static::class, 10);
 
 
        Directory::createRecIfNotExists($baseAssetPublishPath, 0777);
@@ -162,14 +169,13 @@ class SimpleAsset
    protected function getLastChangeFileTimestamp()
    {
         $assetSourcePath = $this->basePath;
-        
+//        vdie($this->js);
         $lasttime = 0;
-        $jsFilesNames = '';
-        $cssFilesNames = '';
+        $filesNames = '';
         foreach ($this->js as $filePath) {
             $fullPath = $assetSourcePath . DIRECTORY_SEPARATOR . $filePath;
             $currentLastTime = filemtime($fullPath);
-            $jsFilesNames .= $filePath;
+            $filesNames .= $filePath;
 
             if ($lasttime < $currentLastTime) {
                 $lasttime = $currentLastTime;
@@ -179,14 +185,15 @@ class SimpleAsset
         foreach ($this->css as $filePath) {
             $fullPath = $assetSourcePath . DIRECTORY_SEPARATOR . $filePath;
             $currentLastTime = filemtime($fullPath);
-            $cssFilesNames .= $filePath;
+            $filesNames .= $filePath;
 
             if ($lasttime < $currentLastTime) {
                 $lasttime = $currentLastTime;
             }
         }
 
-        $filesNamesHash = LengthHash::md5($jsFilesNames . $cssFilesNames, 6);
+       /** @var string $filesNames */
+       $filesNamesHash = LengthHash::md5($filesNames, 6);
 
         return $lasttime . $filesNamesHash;
    } 

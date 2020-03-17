@@ -30,7 +30,7 @@ class AssetsLoaderTest extends Unit
         \ItForFree\rusphp\File\Directory\Directory::clear($this->targetPath, true);
     }
 
-    public function testAss()
+    public function testAssetsAdding()
     {
         $this->make(ItForFree\SimpleAsset\SimpleAssetManager::class, [
             'assetsPath' => $this->targetPath

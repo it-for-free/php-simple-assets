@@ -54,7 +54,6 @@ class SimpleAssetManager
             static::$assetsNames[] = get_class($SimpleAssetObject);
             static::$assets[get_class($SimpleAssetObject)] = $SimpleAssetObject; 
         }
-        
         $SimpleAssetObject->publish();
     }
     
@@ -95,7 +94,6 @@ class SimpleAssetManager
      */
     public static function getJsHtml()
     {
-//        pdie(static::$assets);
         $html = '';
         foreach (static::$assets as $Asset) {
             foreach ($Asset->publishedPaths['js'] as $filePath) {
@@ -128,7 +126,7 @@ class SimpleAssetManager
         }
         return $html;
     }
-    
+
     public static function getPublishBasePath()
     {
         return Path::addEndSlash(

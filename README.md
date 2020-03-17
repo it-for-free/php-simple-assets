@@ -130,6 +130,12 @@ Css:
 
 (You can add paths to `source map` files (they should end with `.map`) in your asset class `public $js` array property.)
 
+## Тестирование
+
+С помощью кодесепшн:
+```shell
+cept run unit
+```
 
 ## Связанные пакеты (Other related packages)
 

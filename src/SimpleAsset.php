@@ -55,7 +55,7 @@ class SimpleAsset
     {
         $Asset = new static();
 
-            $Asset->basePath = Path::addToDocumentRoot($Asset->basePath); // делаем относительный путь абсолютным
+        $Asset->basePath = Path::addToDocumentRoot($Asset->basePath); // делаем относительный путь абсолютным
 
         if (!is_dir($Asset->basePath)) {
             throw new \Exception("Source asset dir {$Asset->basePath} not exists for " . get_class($Asset) . "! ");
@@ -82,11 +82,11 @@ class SimpleAsset
         if (is_dir($baseAssetTimePath)) {
             $this->setPublishPaths($baseAssetTimePath . DIRECTORY_SEPARATOR);
             return; // если ничего не изменилось
-        } else {
-//           vdie($baseAssetPublishPath);
-            Directory::clear($baseAssetPublishPath); // полностью очищаем родительскую директорию
-            $this->copyToAssetsDir($baseAssetTimePath . DIRECTORY_SEPARATOR);
         }
+
+        // Если изменили, добавили или удалили файл ассета, то удаляем все ассеты и загружаем актуальные
+        Directory::clear($baseAssetPublishPath); // полностью очищаем родительскую директорию
+        $this->copyToAssetsDir($baseAssetTimePath . DIRECTORY_SEPARATOR);
     }
 
     /**
@@ -160,13 +160,12 @@ class SimpleAsset
     protected function getLastChangeFileTimestamp()
     {
         $assetSourcePath = $this->basePath;
-//        vdie($this);
         $lasttime = 0;
         $filesNames = '';
         foreach ($this->js as $filePath) {
             $fullPath = $assetSourcePath . DIRECTORY_SEPARATOR . $filePath;
             $currentLastTime = filemtime($fullPath);
-            $filesNames .= $filePath;
+            $filesNames .= $filePath; //собираем имена ассетов в строку
 
             if ($lasttime < $currentLastTime) {
                 $lasttime = $currentLastTime;
@@ -176,14 +175,13 @@ class SimpleAsset
         foreach ($this->css as $filePath) {
             $fullPath = $assetSourcePath . DIRECTORY_SEPARATOR . $filePath;
             $currentLastTime = filemtime($fullPath);
-            $filesNames .= $filePath;
+            $filesNames .= $filePath; //собираем имена ассетов в строку
 
             if ($lasttime < $currentLastTime) {
                 $lasttime = $currentLastTime;
             }
         }
 
-        /** @var string $filesNames */
         $filesNamesHash = LengthHash::md5($filesNames, 6);
 
         return $lasttime . $filesNamesHash;

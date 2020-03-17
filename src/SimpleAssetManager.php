@@ -94,7 +94,6 @@ class SimpleAssetManager
      */
     public static function getJsHtml()
     {
-//        pdie(static::$assets);
         $html = '';
         foreach (static::$assets as $Asset) {
             foreach ($Asset->publishedPaths['js'] as $filePath) {
@@ -142,7 +141,6 @@ class SimpleAssetManager
      */
     protected static function checkBasePublishingDirectoryExists()
     {
-//        vdie($Asset->basePath);
         if (!is_dir(static::getPublishBasePath())) {
             throw new \Exception("Base asset dir {$Asset->basePath} not exists! ");
         }

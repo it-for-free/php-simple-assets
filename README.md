@@ -130,7 +130,17 @@ Css:
 
 (You can add paths to `source map` files (they should end with `.map`) in your asset class `public $js` array property.)
 
+
 ## Связанные пакеты (Other related packages)
 
 Смотрите компоненты SimpleMVC (Look at SimpleMVC components): 
 https://github.com/it-for-free/SimpleMVC#%D0%BF%D0%BE%D0%BB%D0%B5%D0%B7%D0%BD%D1%8B%D0%B5-%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D1%8B
+
+
+
+## ToDo
+
+* Если некий js-файл уже лежал в папке ассета (vendor) до публикации, 
+потом не был опубликован с другими файлами этого ассета,
+ а затем был добавлен в список, то файл этот скопирован не будет -- 
+**проблема решена, НО** необходимо переписать мок-тест на стиль, который использует клиенский код.

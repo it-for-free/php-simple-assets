@@ -24,7 +24,7 @@ composer require it-for-free/php-simple-assets:~v0.0.1
 установите путь к папке асстов (относительно корня сайта):
 (set base asset publish path relative to document root during your app init, or before any different usage of this package)
 ```php
-ItForFree\SimpleAsset\SimpleAssetManager::$assetsPath = 'myassets/'; // default 'assets/'
+\ItForFree\SimpleAsset\SimpleAssetManager::$assetsPath = 'myassets/'; // default 'assets/'
 ```
 -- эта директория должна быть доступной для записи
 (`$assetsPath` dir should be writable)

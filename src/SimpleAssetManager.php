@@ -142,7 +142,7 @@ class SimpleAssetManager
     protected static function checkBasePublishingDirectoryExists()
     {
         if (!is_dir(static::getPublishBasePath())) {
-            throw new \Exception("Base asset dir {$Asset->basePath} not exists! ");
+            throw new \Exception("Base asset dir " . static::$assetsPath . " not exists! ");
         }
     }
 }

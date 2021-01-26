@@ -51,7 +51,7 @@ class SimpleAsset
      * класса SimpleAssetManager
      * @throws \Exception
      */
-    public function add()
+    public static function add()
     {
         $Asset = new static();
 
